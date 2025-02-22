@@ -76,10 +76,12 @@ jobs:
         id: deployment1
         uses: actions/deploy-pages@v4
         with:
-          folder: dist/lecture1
+          artifact_name: lecture1
+          preview: false
 
       - name: Deploy lecture2 to GitHub Pages
         id: deployment2
         uses: actions/deploy-pages@v4
         with:
-          folder: dist/lecture2
+          artifact_name: lecture2
+          preview: false
