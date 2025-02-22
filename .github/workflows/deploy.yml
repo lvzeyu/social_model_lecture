@@ -29,17 +29,21 @@ jobs:
         run: npm i -g @antfu/ni
 
       - name: Install dependencies
-        run: nci
+        run: |
+          cd intro
+          nci
 
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/intro/
+        run: |
+          cd intro
+          nr build --base /${{github.event.repository.name}}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: intro/dist  # Ensure the correct path is uploaded
 
   deploy:
     environment:
