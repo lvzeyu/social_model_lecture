@@ -1,45 +1,54 @@
-  name: Deploy Slidev to GitHub Pages
+name: Deploy pages
 
-  on:
-    push:
-      branches: [main]
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
 
-  permissions:
-    contents: read
-    pages: write
-    id-token: write
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-  jobs:
-    build:
-      runs-on: ubuntu-latest
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
-      steps:
-        - uses: actions/checkout@v4
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-        - uses: actions/setup-node@v4
-          with:
-            node-version: 'lts/*'
+    steps:
+      - uses: actions/checkout@v4
 
-        - name: Install dependencies
-          run: npm install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
 
-        - name: Build Slidev
-          run: npm run build -- --base /${{ github.event.repository.name }}/intro/
+      - name: Setup @antfu/ni
+        run: npm i -g @antfu/ni
 
-        - name: Configure GitHub Pages
-          uses: actions/configure-pages@v4
+      - name: Install dependencies
+        run: nci
 
-        - name: Upload to GitHub Pages
-          uses: actions/upload-pages-artifact@v3
-          with:
-            path: dist
+      - name: Build
+        run: nr build --base /${{github.event.repository.name}}/intro
 
-    deploy:
-      needs: build
-      runs-on: ubuntu-latest
-      permissions:
-        pages: write
-        id-token: write
-      steps:
-        - name: Deploy to GitHub Pages
-          uses: actions/deploy-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
