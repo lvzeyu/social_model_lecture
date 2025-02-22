@@ -62,25 +62,12 @@ jobs:
         with:
           path: dist
 
-      - name: Debug: List downloaded artifacts
-        run: ls -al dist
-
-      - name: Debug: List intro directory
-        run: ls -al dist/intro || true
-
-      - name: Debug: List lecture directory
-        run: ls -al dist/lecture || true
-
       - name: Move artifacts to correct location
         run: |
-          if [ -d "dist/intro" ]; then
-            mkdir -p dist/intro
-            mv dist/intro/* dist/intro/
-          fi
-          if [ -d "dist/lecture" ]; then
-            mkdir -p dist/lecture
-            mv dist/lecture/* dist/lecture/
-          fi
+          mkdir -p dist/lecture1
+          mkdir -p dist/lecture2
+          mv dist/lecture1/* dist/lecture1/
+          mv dist/lecture2/* dist/lecture2/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
