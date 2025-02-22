@@ -28,22 +28,36 @@ jobs:
       - name: Setup @antfu/ni
         run: npm i -g @antfu/ni
 
-      - name: Install dependencies
+      # Build "intro" Slidev presentation
+      - name: Install dependencies for intro
         run: |
           cd intro
           nci
 
-      - name: Build
+      - name: Build intro slides
         run: |
           cd intro
-          nr build --base /${{github.event.repository.name}}/
+          nr build --base /${{github.event.repository.name}}/intro/
+          mv dist ../dist/intro  # Move to central "dist" folder
+
+      # Build "lecture" Slidev presentation
+      - name: Install dependencies for lecture
+        run: |
+          cd lecture
+          nci
+
+      - name: Build lecture slides
+        run: |
+          cd lecture
+          nr build --base /${{github.event.repository.name}}/lecture/
+          mv dist ../dist/lecture  # Move to central "dist" folder
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: intro/dist  # Ensure the correct path is uploaded
+          path: dist  # Upload everything inside the "dist" folder
 
   deploy:
     environment:
