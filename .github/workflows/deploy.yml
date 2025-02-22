@@ -57,17 +57,29 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-      - name: Download all artifacts
+      - name: Download artifact for lecture1
         uses: actions/download-artifact@v4
         with:
-          path: dist
+          name: lecture1
+          path: dist/lecture1
+
+      - name: Download artifact for lecture2
+        uses: actions/download-artifact@v4
+        with:
+          name: lecture2
+          path: dist/lecture2
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy lecture1 to GitHub Pages
+        id: deployment1
         uses: actions/deploy-pages@v4
         with:
-          folder: dist
+          folder: dist/lecture1
 
+      - name: Deploy lecture2 to GitHub Pages
+        id: deployment2
+        uses: actions/deploy-pages@v4
+        with:
+          folder: dist/lecture2
