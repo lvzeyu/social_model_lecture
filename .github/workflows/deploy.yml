@@ -44,10 +44,10 @@ jobs:
           nr build --base /${{ github.event.repository.name }}/${{ matrix.slidev_folder }}/
 
       - name: Upload artifact for ${{ matrix.slidev_folder }}
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          path: ${{ matrix.slidev_folder }}/dist
           name: ${{ matrix.slidev_folder }}
+          path: ${{ matrix.slidev_folder }}/dist
 
   deploy:
     environment:
@@ -70,3 +70,4 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           artifact_name: dist
+          folder: dist
