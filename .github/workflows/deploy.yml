@@ -1,4 +1,4 @@
-name: Deploy pages
+name: Deploy Multiple Slidev Pages
 
 on:
   workflow_dispatch:
@@ -18,6 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        slidev_folder: [intro, lecture]
+
     steps:
       - uses: actions/checkout@v4
 
@@ -28,40 +32,21 @@ jobs:
       - name: Setup @antfu/ni
         run: npm i -g @antfu/ni
 
-      # Ensure dist directory exists
-      - name: Create dist directory
-        run: mkdir -p dist/intro dist/lecture
-
-      # Build "intro" Slidev presentation
-      - name: Install dependencies for intro
+      - name: Install dependencies (${{ matrix.slidev_folder }})
         run: |
-          cd intro
+          cd ${{ matrix.slidev_folder }}
           nci
 
-      - name: Build intro slides
+      - name: Build (${{ matrix.slidev_folder }})
         run: |
-          cd intro
-          nr build --base /${{github.event.repository.name}}/intro/
-          mv dist/* ../dist/intro/  # Move contents, not the folder itself
+          cd ${{ matrix.slidev_folder }}
+          nr build --base /${{ github.event.repository.name }}/${{ matrix.slidev_folder }}/
 
-      # Build "lecture" Slidev presentation
-      - name: Install dependencies for lecture
-        run: |
-          cd lecture
-          nci
-
-      - name: Build lecture slides
-        run: |
-          cd lecture
-          nr build --base /${{github.event.repository.name}}/lecture/
-          mv dist/* ../dist/lecture/  # Move contents, not the folder itself
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact for ${{ matrix.slidev_folder }}
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: dist  # Upload everything inside the "dist" folder
+          path: ${{ matrix.slidev_folder }}/dist
+          name: ${{ matrix.slidev_folder }}
 
   deploy:
     environment:
@@ -71,6 +56,23 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+
+      - name: Move artifacts to correct location
+        run: |
+          mkdir -p dist/intro
+          mkdir -p dist/lecture
+          mv dist/intro/* dist/intro/
+          mv dist/lecture/* dist/lecture/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: dist
