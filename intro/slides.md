@@ -41,60 +41,43 @@ transition: fade-out
 
 # 授業の概要
 
-
 社会科学の観点からモデルとモデリングの基本的な概念および方法論について学ぶ
 
-- 📝 モデルとモデリングの考え方を把握する
-    - そもそも **モデル** ってなに？
-    - 社会現象と人間行動の**モデリング**とは?
-    - 社会科学における**社会モデリング**という手法の位置付け
-- 🧠 基本の社会科学モデルを理解できるようになる
-    -  社会における合意の形成
-    -  社会における伝播現象
-    -  確率モデルによる社会の構造の分析
-- 🧑‍💻 モデルを用いて社会現象や人間行動の分析に応用する能力を身につける
+- 📝 モデルとモデリングの考え方を把握する.
+- 🎨 基本の社会科学モデルを理解できるようになる.
+- 🧑‍💻 モデルを用いて社会現象や人間行動の分析に応用する能力を身につける.
 
-<!-- 自定义样式 -->
+<br>
+<br>
+
+Read more about [Why Slidev?](https://sli.dev/guide/why)
+
+<!--
+You can have `style` tag in markdown to override the style for the current page.
+Learn more: https://sli.dev/features/slide-scope-style
+-->
+
 <style>
 h1 {
-  background-color: #3E1586;
+  background-color: #B069DB;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
-
-p {
-  font-size: 22px;
-  line-height: 1.6;
-  font-weight: normal;
-  color: #000000;
-}
 </style>
 
----
-transition: slide-up
-level: 2
----
-
-# モデルの考え方
-
-原型とモデル
-
-- モデルは「何かの」表現である.
-    > 「$A$と$B$という二つの対象があったとする. $B$が$A$の何らかの特徴を写していると考えられるとき, $B$を$A$のモデル, $A$を$B$の原型という。」
-
-
+<!--
+Here is another comment.
+-->
 
 ---
 transition: slide-up
 level: 2
 ---
 
-# モデルの考え方
-
-## 原型とモデル
+# Navigation
 
 Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
 
