@@ -33,6 +33,7 @@ jobs:
         run: npm i -g @antfu/ni
 
       - name: Install dependencies (${{ matrix.slidev_folder }})
+        timeout-minutes: 10 # Adding timeout to prevent cancellation
         run: |
           cd ${{ matrix.slidev_folder }}
           nci
