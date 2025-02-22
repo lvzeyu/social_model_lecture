@@ -73,6 +73,18 @@ p {
 }
 </style>
 
+---
+transition: slide-up
+level: 2
+---
+
+# モデルの考え方
+
+原型とモデル
+
+- モデルは「何かの」表現である.
+    > 「$A$と$B$という二つの対象があったとする. $B$が$A$の何らかの特徴を写していると考えられるとき, $B$を$A$のモデル, $A$を$B$の原型という。」
+
 
 
 ---
@@ -81,6 +93,8 @@ level: 2
 ---
 
 # モデルの考え方
+
+## 原型とモデル
 
 Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
 
