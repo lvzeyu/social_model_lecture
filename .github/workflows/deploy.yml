@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        slidev_folder: [intro, lecture]
+        slidev_folder: [lecture1, lecture2]
 
     steps:
       - uses: actions/checkout@v4
