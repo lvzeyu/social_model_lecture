@@ -21,6 +21,7 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
+
 ---
 
 # 行動科学概論
@@ -44,22 +45,20 @@ transition: fade-out
 社会科学の観点からモデルとモデリングの基本的な概念および方法論について学ぶ
 
 - 📝 モデルとモデリングの考え方を把握する.
+    - そもそも**モデル**ってなに?
+    - **人間行動と社会モデリング**とは?
+    - 社会科学における**モデリング**という手法の位置付け
 - 🎨 基本の社会科学モデルを理解できるようになる.
+    - 社会における伝播現象のモデリング
+    - 
 - 🧑‍💻 モデルを用いて社会現象や人間行動の分析に応用する能力を身につける.
 
 <br>
 <br>
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
 <style>
 h1 {
-  background-color: #B069DB;
+  background-color: #3E1586;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -68,36 +67,132 @@ h1 {
 }
 </style>
 
-<!--
-Here is another comment.
--->
+
+---
+class: px-20
+---
+     
+# 授業の資料について
+
+- 授業の資料はオンラインで公開する
+- 参考資料と参考文献は授業中適宜提示
+    - 教科書としては以下の本に参考してください
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; text-align: center;">
+  <div>
+    <img src="./image/book1.jpg" alt="" width="180" height="200">
+  </div>
+  <div>
+    <img src="./image/book2.jpg" alt="" width="180" height="200">
+  </div>
+</div>
+
+
+<style>
+h1 {
+  background-color: #3E1586;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+class: px-20
+---
+     
+# 授業の内容
+
+- モデルと原型
+
+> $A$と$B$という二つの対象があったとする.$B$がAの何らかの特徴を写していると考えられるとき、$B$を$A$のモデル, $A$$B$の原型という.
+- 
+
+<style>
+h1 {
+  background-color: #3E1586;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
 
 ---
 transition: slide-up
 level: 2
 ---
 
-# Navigation
+# 授業の構成
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
+　モデルの考え方
 
-## Keyboard Shortcuts
+- モデルの概念
+- 人間行動モデリングの基礎
+- 社会モデリング
 
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
 
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+<style>
+h1 {
+  background-color: #3E1586;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+transition: slide-up
+level: 2
+---
+
+# 授業の構成
+
+　社会シミュレーションの方法論
+
+- 社会シミュレーションの例を通じて全体像と基本構造を把握
+    - エージェントと構成要素と構造
+    > エージェントと構成要素と構造
+    - シミュレーションの設定
+    - シナリオ分析
+
+
+<style>
+h1 {
+  background-color: #3E1586;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+
+---
+transition: slide-up
+level: 2
+---
+
+# モデルの考え方
+
+　原型とモデル
+
+- モデルは「何かの」表現である
+
+> $A$と$B$という二つの対象があったとする.$B$がAの何らかの特徴を写していると考えられるとき、$B$を$A$のモデル, $A$を$B$の原型という.
+
+
+<div class="flex flex-col items-center">
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*mVWO0jpsLxPFk4UqXpnjpw.png" alt="リモートの画像" />
+  <p class="text-sm text-gray-500 mt-2">モデルとしての地図</p>
+</div>
+
 
 ---
 layout: two-cols
