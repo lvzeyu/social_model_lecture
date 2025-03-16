@@ -1,4 +1,4 @@
-name: Deploy pages
+name: Deploy Multiple Slidev Pages
 
 on:
   workflow_dispatch:
@@ -18,6 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        slidev_folder: [lecture1, lecture2]
+
     steps:
       - uses: actions/checkout@v4
 
@@ -28,18 +32,22 @@ jobs:
       - name: Setup @antfu/ni
         run: npm i -g @antfu/ni
 
-      - name: Install dependencies
-        run: nci
+      - name: Install dependencies (${{ matrix.slidev_folder }})
+        timeout-minutes: 10
+        run: |
+          cd ${{ matrix.slidev_folder }}
+          nci
 
-      - name: Build
-        run: nr build --base /${{github.event.repository.name}}/intro
+      - name: Build (${{ matrix.slidev_folder }})
+        run: |
+          cd ${{ matrix.slidev_folder }}
+          nr build --base /${{ github.event.repository.name }}/${{ matrix.slidev_folder }}/
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact for ${{ matrix.slidev_folder }}
+        uses: actions/upload-artifact@v4
         with:
-          path: dist
+          name: ${{ matrix.slidev_folder }}
+          path: ${{ matrix.slidev_folder }}/dist
 
   deploy:
     environment:
@@ -49,6 +57,31 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Download artifact for lecture1
+        uses: actions/download-artifact@v4
+        with:
+          name: lecture1
+          path: dist/lecture1
+
+      - name: Download artifact for lecture2
+        uses: actions/download-artifact@v4
+        with:
+          name: lecture2
+          path: dist/lecture2
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Deploy lecture1 to GitHub Pages
+        id: deployment1
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: lecture1
+          preview: false
+
+      - name: Deploy lecture2 to GitHub Pages
+        id: deployment2
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: lecture2
+          preview: false
